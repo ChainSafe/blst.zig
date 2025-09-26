@@ -57,5 +57,3 @@ pub fn build(b: *std.Build) !void {
 
     b.installArtifact(lib);
 }
-
-const blst_files: []const []const u8 = &.{};
