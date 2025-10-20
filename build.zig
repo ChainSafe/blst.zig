@@ -11,6 +11,7 @@ pub fn build(b: *std.Build) !void {
     var c_flags = std.ArrayList([]const u8).init(b.allocator);
     defer c_flags.deinit();
 
+    try c_flags.append("-O2");
     try c_flags.append("-fno-builtin");
     try c_flags.append("-Wno-unused-function");
     try c_flags.append("-Wno-unused-command-line-argument");
@@ -37,6 +38,8 @@ pub fn build(b: *std.Build) !void {
             lib.root_module.addCMacro("__ADX__", "");
         }
     }
+
+    if (target.result.cpu.arch == .aarch64) lib.root_module.addCMacro("__ARM_FEATURE_CRYPTO", "1");
 
     if (target.result.cpu.arch != .x86_64 and
         target.result.cpu.arch != .aarch64)
