@@ -11,7 +11,6 @@ pub fn build(b: *std.Build) !void {
     var c_flags = std.ArrayList([]const u8).init(b.allocator);
     defer c_flags.deinit();
 
-    try c_flags.append("-O2");
     try c_flags.append("-fno-builtin");
     try c_flags.append("-Wno-unused-function");
     try c_flags.append("-Wno-unused-command-line-argument");
